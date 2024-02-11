@@ -78,11 +78,15 @@
 </div>
 
 <script>
-function showMessage() {
+function showMessageWithAnimation() {
   var message = document.getElementById("message");
-  // Always toggle visibility regardless of current state
-  message.style.display = message.style.display === "none" ? "block" : "none";
+  message.style.display = "block"; // Ensure message is visible
+  message.classList.add("openNor"); // Trigger the message opening animation
+
+  var heartImage = this.querySelector("img"); // Get the heart image within the clicked heart container
+  heartImage.classList.add("beating"); // Trigger the heart beating animation
 }
+
 </script>
 
 </body>
