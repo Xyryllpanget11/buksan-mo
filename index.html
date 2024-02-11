@@ -78,14 +78,30 @@
 </div>
 
 <script>
-function showMessageWithAnimation() {
-  var message = document.getElementById("message");
-  message.style.display = "block"; // Ensure message is visible
-  message.classList.add("openNor"); // Trigger the message opening animation
+$("#messageState").on("change", (x) => {
+  $(".message").removeClass("openNor").removeClass("closeNor");
+  if ($("#messageState").is(":checked")) {
+    // Start message opening animation
+    $(".message").removeClass("closed").removeClass("no-anim").addClass("openNor");
+    // Start heart moving animation
+    $(".heart").removeClass("closeHer").removeClass("openedHer").addClass("openHer");
+    // Animate background color
+    $(".container").stop().animate({"backgroundColor": "#f48fb1"}, 2000);
+    console.log("Abrindo");
+  } else {
+    // Start message closing animation
+    $(".message").removeClass("no-anim").addClass("closeNor");
+    // Start heart moving animation (reversed)
+    $(".heart").removeClass("openHer").removeClass("openedHer").addClass("closeHer");
+    // Animate background color
+    $(".container").stop().animate({"backgroundColor": "#fce4ec"}, 2000);
+    console.log("fechando");
+  }
 
-  var heartImage = this.querySelector("img"); // Get the heart image within the clicked heart container
-  heartImage.classList.add("beating"); // Trigger the heart beating animation
-}
+  // Trigger heart beating animation
+  $(".heart").find("img").addClass("beating");
+});
+
 
 </script>
 
