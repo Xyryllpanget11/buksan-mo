@@ -42,9 +42,11 @@
   .heart > img {
     width: 50px;
     height: auto;
+    cursor: pointer;
   }
 
   .message {
+    display: none;
     padding: 20px;
     background-color: #eee;
     min-width: 400px;
@@ -55,135 +57,19 @@
     transform: translate(-50%, -50%);
     z-index: 0;
     overflow: hidden;
-    animation-name: openmsg;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-play-state: paused;
-    animation-fill-mode: forwards;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
     border-radius: 5px;
   }
 
-  .heart > img:hover {
-    animation-name: beat;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-play-state: running;
-  }
-
-  #messageState {
-  }
-
-  @keyframes beat {
-    0% {
-      width: 50px;
-    }
-    25% {
-      width: 58px;
-    }
-    30% {
-      width: 50px;
-    }
-    50% {
-      width: 45px;
-    }
-    60% {
-      width: 50px;
-    }
-    75% {
-      width: 58px;
-    }
-    100% {
-      width: 50px;
-    }
-  }
-
-  @keyframes openmsg {
-    0% {
-      height: 0px;
-      padding: 0px 20px;
-    }
-    100% {
-      height: 75%;
-      padding: 20px 20px;
-    }
-  }
-
-  @keyframes heartMove {
-    0% {
-      top: 50%;
-    }
-    100% {
-      top: 85%;
-      transform: translate(-50%, 0);
-    }
-  }
-
-  .openNor {
-    animation-direction: normal;
-    animation-play-state: running;
-  }
-
-  .closeNor {
-    animation-direction: reverse;
-    animation-play-state: running;
-  }
-
-  .no-anim {
-    animation: none;
-  }
-
-  .closed {
-    height: 0px;
-    padding: 0px 20px;
-  }
-
-  .bottom {
-    bottom: 5px;
-  }
-
-  .openHer {
-    animation-name: heartMove;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-play-state: running;
-    animation-fill-mode: forwards;
-  }
-
-  .closeHer {
-    animation-name: heartMove;
-    animation-duration: 2s;
-    animation-timing-function: linear;
-    animation-play-state: running;
-    animation-direction: reverse;
-    animation-fill-mode: forwards;
-  }
-
-  .beating > img {
-    animation-name: beat;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-play-state: running;
-  }
-
-  .openedHer {
-    top: 85%;
-    transform: translate(-50%, 0);
-  }
 </style>
 </head>
 <body>
 
 <div class="container">
-  <label>
-    <div class="heart">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg">
-    </div>
-    <input id="messageState" type="checkbox" style="display:none">
-  </label>
-  <div class="message">
+  <div class="heart" onclick="toggleMessage()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg">
+  </div>
+  <div class="message" id="message">
     <h1>Hello lalovee</h1>
     <p>Hello loveee wla lang nabuo ko lang tong website nato para pag papasalamat na din sayo, maraming salamat kasi na aapreciate mo yung gifts ko, flowers
       and kahit mga simpleng gifts lang, im sorry if di kita mapadalhan ng flowers like yung mga nauna sakin
@@ -193,36 +79,14 @@
 </div>
 
 <script>
-  $("#messageState").on("change", (x) => {
-    $(".message").removeClass("openNor").removeClass("closeNor");
-    if ($("#messageState").is(":checked")) {
-      $(".message").removeClass("closed").removeClass("no-anim").addClass("openNor");
-      $(".heart").removeClass("closeHer").removeClass("openedHer").addClass("openHer");
-      $(".container").stop().animate({"backgroundColor": "#f48fb1"}, 2000);
-      console.log("Abrindo");
-    } else {
-      $(".message").removeClass("no-anim").addClass("closeNor");
-      $(".heart").removeClass("openHer").removeClass("openedHer").addClass("closeHer");
-      $(".container").stop().animate({"backgroundColor": "#fce4ec"}, 2000);
-      console.log("fechando");
-    }
-  });
-
-  $(".message").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
-    console.log("Animation End");
-    if ($(".message").hasClass("closeNor"))
-      $(".message").addClass("closed");
-    $(".message").removeClass("openNor").removeClass("closeNor").addClass("no-anim");
-  });
-
-  $(".heart").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
-    console.log("Animation End");
-    if (!$(".heart").hasClass("closeHer"))
-      $(".heart").addClass("openedHer").addClass("beating");
-    else
-      $(".heart").addClass("no-anim").removeClass("beating");
-    $(".heart").removeClass("openHer").removeClass("closeHer");
-  });
+function toggleMessage() {
+  var message = document.getElementById("message");
+  if (message.style.display === "none") {
+    message.style.display = "block";
+  } else {
+    message.style.display = "none";
+  }
+}
 </script>
 
 </body>
