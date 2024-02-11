@@ -1,109 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Love Message</title>
-<style>
-  h1,
-  p {
-    font-family: "Hind", sans-serif;
-  }
+ <link href='https://fonts.googleapis.com/css?family=Solitreo' rel='stylesheet'>
 
-  p {
-    text-indent: 50px;
-  }
-
-  h1 {
-    font-weight: 200;
-  }
-
-  body {
-    margin: 0px;
-  }
-
-  .container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .heart {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    text-align: center;
-    transform: translate(-50%, -50%);
-    /* Remove transition as it's not used */
-    /* transition: transform 2s; */
-    z-index: 1;
-  }
-
-  .heart > img {
-    width: 50px;
-    height: auto;
-    cursor: pointer;
-  }
-
-  .message {
-    display: none; /* Initially hidden */
-    padding: 20px;
-    background-color: #eee;
-    min-width: 400px;
-    height: 75%;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 0;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    border-radius: 5px;
-  }
-</style>
-</head>
-<body>
 
 <div class="container">
-  <div class="heart onclick="showMessage()"> <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Love_Heart_SVG.svg">
+  <div class="envelope">
   </div>
-  <div class="message" id="message">
-    <h1>Hello lalovee</h1>
-    <p>Hello loveee wla lang nabuo ko lang tong website nato para pag papasalamat na din sayo, maraming salamat kasi na aapreciate mo yung gifts ko, flowers
-       and kahit mga simpleng gifts lang, im sorry if di kita mapadalhan ng flowers like yung mga nauna sakin
-       i promise gagawin ko yung best ko para maging the best sayo, yun lang, i love you lalovee, always take care of yourself
-       mahal na mahal kita, i love youu mwa²</p>
+  <div class="valentines-card">
+    <h1 class="card-text">
+    Will you marry me Leah?
+  </h1>
+   <div class="heart"></div>
   </div>
+  
+  <div class="cover"> </div>
+  <div class="lid"> </div>
+  <div class="shadow"> </div>
+  
 </div>
-
-<script>
-$("#messageState").on("change", (x) => {
-  $(".message").removeClass("openNor").removeClass("closeNor");
-  if ($("#messageState").is(":checked")) {
-    // Start message opening animation
-    $(".message").removeClass("closed").removeClass("no-anim").addClass("openNor");
-    // Start heart moving animation
-    $(".heart").removeClass("closeHer").removeClass("openedHer").addClass("openHer");
-    // Animate background color
-    $(".container").stop().animate({"backgroundColor": "#f48fb1"}, 2000);
-    console.log("Abrindo");
-  } else {
-    // Start message closing animation
-    $(".message").removeClass("no-anim").addClass("closeNor");
-    // Start heart moving animation (reversed)
-    $(".heart").removeClass("openHer").removeClass("openedHer").addClass("closeHer");
-    // Animate background color
-    $(".container").stop().animate({"backgroundColor": "#fce4ec"}, 2000);
-    console.log("fechando");
-  }
-
-  // Trigger heart beating animation
-  $(".heart").find("img").addClass("beating");
-});
-
-
-</script>
-
-</body>
-</html>
